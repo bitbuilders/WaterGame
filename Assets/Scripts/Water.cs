@@ -11,10 +11,13 @@ public class Water : MonoBehaviour
 	[HeaderAttribute("Mesh")]
 	[SerializeField] [Range(2, 200)] int m_xMeshVertexNum = 2;
 	[SerializeField] [Range(2, 200)] int m_zMeshVertexNum = 2;
-	[SerializeField] [Range(1.0f, 80.0f)] float m_xMeshSize = 40.0f;
-	[SerializeField] [Range(1.0f, 80.0f)] float m_zMeshSize = 40.0f;
+	[SerializeField] [Range(1.0f, 200.0f)] float m_xMeshSize = 40.0f;
+	[SerializeField] [Range(1.0f, 200.0f)] float m_zMeshSize = 40.0f;
 
-	MeshFilter m_meshFilter = null;
+    public float MeshWidth { get { return m_xMeshSize; } }
+    public float MeshHeight { get { return m_zMeshSize; } }
+
+    MeshFilter m_meshFilter = null;
 	MeshCollider m_meshCollider = null;
 	Mesh m_mesh = null;
 	Vector3[] m_vertices;
@@ -75,14 +78,14 @@ public class Water : MonoBehaviour
     }
 	void UpdateSimulation(ref float[,] current, ref float[,] previous)
 	{
-        for (int x = 1; x < previous.GetLength(1) - 1; x++)
+        for (int x = 0; x < previous.GetLength(1); x++)
         {
-            for (int y = 1; y < previous.GetLength(0) - 1; y++)
+            for (int y = 0; y < previous.GetLength(0); y++)
             {
                 int numOfNums = 0;
                 float value = 0.0f;
                 value = SumCircle(previous, x, y, out numOfNums);
-                value /= (numOfNums / 2.0f);
+                value /= (numOfNums / 1.5f);
                 value -= current[y, x];
                 value -= (value * m_dampening);
                 current[y, x] = value;
