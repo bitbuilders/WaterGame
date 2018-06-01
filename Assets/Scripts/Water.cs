@@ -141,6 +141,15 @@ public class Water : MonoBehaviour
 				int z = index / m_xMeshVertexNum;
 				m_buffer1[x, z] = strength;
 			}
-		}
+            else
+            {
+                print("fail");
+
+            }
+        }
+        else
+        {
+            print("fail");
+        }
 	}
 }
