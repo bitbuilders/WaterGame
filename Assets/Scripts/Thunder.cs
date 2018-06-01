@@ -37,13 +37,13 @@ public class Thunder : MonoBehaviour
         m_audioSource.pitch = Random.Range(1.0f - m_pitchRange, 1.0f + m_pitchRange);
         m_audioSource.Play();
         StartCoroutine(FlashLight(2.0f, 1.0f));
-        Ray ray = new Ray(Vector3.up * 5.0f, Vector3.down);
-        m_water.Touch(ray, 100.0f);
     }
 
     private IEnumerator FlashLight(float fadeSpeed, float duration)
     {
         yield return new WaitForSeconds(duration);
+        Ray ray = new Ray(Vector3.up * 5.0f, Vector3.down);
+        m_water.Touch(ray, 100.0f);
         m_light.enabled = true;
         float intensity = m_light.intensity;
 

@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
         m_rigidBody = GetComponent<Rigidbody>();
         m_audioSource = GetComponent<AudioSource>();
         m_actualSpeed = m_speed;
@@ -66,6 +67,11 @@ public class Player : MonoBehaviour
         else
         {
             m_gunAnimator.SetFloat("Walk", 0.0f);
+        }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            Application.Quit();
         }
     }
 
